@@ -1,12 +1,14 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../utils/colors_constant.dart';
 import '../../../../utils/utils.dart';
 import '../../controller/form_data_controller.dart';
 import '../../model/add_form_data_model.dart';
 import '../widgets/mandatory_title.dart';
 import '../widgets/non_mandatory_title.dart';
+import 'display_saved_data_page.dart';
 
 class DynamicFormPage extends StatelessWidget {
   final FormDataModel formDataModel;
@@ -19,7 +21,7 @@ class DynamicFormPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {Get.back();},
           icon: const Icon(Icons.arrow_back_sharp),
         ),
         title: const Text('Add Input'),
@@ -34,7 +36,7 @@ class DynamicFormPage extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: _handleSubmit,
+              onPressed:(){_handleSubmit(context);} ,
               style: ElevatedButton.styleFrom(
                 backgroundColor: BorderColor.orange,
                 minimumSize: const Size(double.infinity, 50),
@@ -315,11 +317,13 @@ class DynamicFormPage extends StatelessWidget {
     return null;
   }
 
-  Future<void> _handleSubmit() async {
+  Future<void> _handleSubmit(BuildContext context) async {
     bool isValid = true;
 
     // Create a list to store the responses for display
     List<String> responses = [];
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // Iterate through each question to validate the responses
     for (var question in formDataModel.data!.getUserForm!.questions!) {
@@ -341,30 +345,35 @@ class DynamicFormPage extends StatelessWidget {
         }
       }
 
-      // Collect responses for the dialog after validation
+      // Collect responses for saving and dialog display
       if (question.userResponse != null && question.userResponse!.isNotEmpty) {
         responses.add('${question.question}: ${question.userResponse}');
+
+        // Save response to shared preferences
+        await prefs.setString(question.question ?? '', question.userResponse!);
       } else {
-        // Handle case where userResponse is null or empty, and avoid adding it to responses
         responses.add('${question.question}: No response provided');
       }
     }
 
-    // If form is valid, show the dialog with responses
+    // If form is valid, navigate to the DisplayResponsesPage
     if (isValid) {
       print('Form is valid. Submitting responses...');
 
-      // Check that responses are not empty before calling dialog
-      if (responses.isNotEmpty && responses.any((response) => response != null)) {
-        // await Get.snackbar('alert', 'we are saving your responses');
-        logg.i(responses);
-      } else {
-        print('No valid responses to display.');
-      }
+      // You can also display the responses in a log or use a Snackbar if needed.
+      // Display the responses if form is valid
+      logg.i(responses);
+
+      // Navigate to the DisplayResponsesPage after saving the data
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => DisplayResponsesPage()),
+      );
     } else {
       print('Form is invalid. Please fill out all required fields.');
     }
   }
+
 
 // Method to show the dialog
 //   void _showResponseDialog(List<String> responses) {
