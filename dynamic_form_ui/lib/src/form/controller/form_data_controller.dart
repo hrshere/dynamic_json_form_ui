@@ -5,13 +5,20 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class FormDataController extends GetxController {
+  RxMap<String, String> validationErrors = <String, String>{}.obs;
   var selectedLocation = Rxn<String>(); // Location as a string, you can change it if needed
   var selectedSelfie = Rxn<XFile>(); // Store the selfie image
   var selectedRadioValue = Rxn<String>(); // Store the radio button value
 
   final ImagePicker picker = ImagePicker();
 
+  void setValidationError(String question, String error) {
+    validationErrors[question] = error;
+  }
 
+  void clearValidationError(String question) {
+    validationErrors.remove(question);
+  }
   // Method to check and request location permission
   Future<void> checkAndRequestLocationPermission() async {
     // Check if location permission is granted
