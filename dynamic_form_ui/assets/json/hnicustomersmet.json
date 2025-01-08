@@ -1,0 +1,170 @@
+{
+  "data": {
+    "__typename": "Query",
+    "getUserForm": {
+      "__typename": "Form",
+      "id": 16,
+      "name": "hni customers met",
+      "formUuid": "b12ff89d-c26a-47fb-b4bc-40affb5650ca",
+      "isEditable": true,
+      "questions": [
+        {
+          "__typename": "Question",
+          "id": 68,
+          "question": "name of the customer",
+          "questionType": "TEXTFORMFIELD",
+          "answerType": "TEXT",
+          "maxLines": 1,
+          "hintText": "enter the name of the customer",
+          "isEnabled": true,
+          "reValidation": null,
+          "reValidationText": null,
+          "isMandatoryField": true,
+          "options": [],
+          "userResponse": null
+        },
+        {
+          "__typename": "Question",
+          "id": 69,
+          "question": " ",
+          "questionType": "FORM",
+          "answerType": "FORM",
+          "maxLines": 1,
+          "hintText": "",
+          "isEnabled": true,
+          "reValidation": null,
+          "reValidationText": null,
+          "isMandatoryField": true,
+          "options": [
+            {
+              "__typename": "Form",
+              "id": 17,
+              "name": "location & selfie",
+              "formUuid": "a447bb1a-cdb4-4d7b-87b7-23413b0ff16a",
+              "isEditable": true,
+              "questions": [
+                {
+                  "__typename": "Question",
+                  "id": 71,
+                  "question": "location",
+                  "questionType": "ELEVATEDBUTTON",
+                  "answerType": "FETCHLOCATION",
+                  "maxLines": 1,
+                  "hintText": "",
+                  "isEnabled": true,
+                  "reValidation": null,
+                  "reValidationText": null,
+                  "isMandatoryField": true,
+                  "options": [],
+                  "userResponse": null
+                },
+                {
+                  "__typename": "Question",
+                  "id": 70,
+                  "question": "take selfie",
+                  "questionType": "ELEVATEDBUTTON",
+                  "answerType": "FETCHCAMERA",
+                  "maxLines": 1,
+                  "hintText": "",
+                  "isEnabled": true,
+                  "reValidation": null,
+                  "reValidationText": null,
+                  "isMandatoryField": false,
+                  "options": [],
+                  "userResponse": null
+                }
+              ]
+            }
+          ],
+          "userResponse": null
+        },
+        {
+          "__typename": "Question",
+          "id": 67,
+          "question": "contact number",
+          "questionType": "MOBILENUMBER",
+          "answerType": "NUMBER",
+          "maxLines": 1,
+          "hintText": "0000000000",
+          "isEnabled": true,
+          "reValidation": "^(?:[+0]9)?[0-9]{10}$",
+          "reValidationText": null,
+          "isMandatoryField": true,
+          "options": [],
+          "userResponse": null
+        },
+        {
+          "__typename": "Question",
+          "id": 66,
+          "question": "purpose of meeting?",
+          "questionType": "RADIO",
+          "answerType": "TEXT",
+          "maxLines": 1,
+          "hintText": "",
+          "isEnabled": true,
+          "reValidation": null,
+          "reValidationText": null,
+          "isMandatoryField": true,
+          "options": [
+            {
+              "__typename": "Option",
+              "id": 29,
+              "option": "first visit"
+            },
+            {
+              "__typename": "Option",
+              "id": 28,
+              "option": "re-visit"
+            }
+          ],
+          "userResponse": null
+        },
+        {
+          "__typename": "Question",
+          "id": 64,
+          "question": "reference name",
+          "questionType": "TEXTFORMFIELD",
+          "answerType": "TEXT",
+          "maxLines": 1,
+          "hintText": "enter the reference name",
+          "isEnabled": true,
+          "reValidation": null,
+          "reValidationText": null,
+          "isMandatoryField": false,
+          "options": [],
+          "userResponse": null
+        },
+        {
+          "__typename": "Question",
+          "id": 92,
+          "question": "reference contact number",
+          "questionType": "MOBILENUMBER",
+          "answerType": "NUMBER",
+          "maxLines": 1,
+          "hintText": "0000000000",
+          "isEnabled": true,
+          "reValidation": "^(?:[+0]9)?[0-9]{10}$",
+          "reValidationText": null,
+          "isMandatoryField": false,
+          "options": [],
+          "userResponse": null
+        },
+        {
+          "__typename": "Question",
+          "id": 63,
+          "question": "remarks",
+          "questionType": "TEXTFORMFIELD",
+          "answerType": "TEXT",
+          "maxLines": 5,
+          "hintText": "type something...",
+          "isEnabled": true,
+          "reValidation": null,
+          "reValidationText": null,
+          "isMandatoryField": true,
+          "options": [],
+          "userResponse": null
+        }
+      ]
+    }
+  }
+}
